@@ -1,5 +1,6 @@
-public class Employee {
+import java.util.Objects;
 
+public class Employee {
     private String name;
     private String department;
     private int salary;
@@ -39,9 +40,21 @@ public class Employee {
     public void setSalary(int salary) {
         this.salary = salary;
     }
-
+@Override
     public String toString() {
         return "ФИО " + name + " Отдел " + department + " Зарплата  " + salary + " ID сотрудника " + id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return salary == employee.salary && id == employee.id && name.equals(employee.name) && department.equals(employee.department);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, department, salary, id);
+    }
 }
